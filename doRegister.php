@@ -8,7 +8,7 @@ $password = SHA1($_POST['password']);
 $ComfirmPassword = SHA1($_POST['ComfirmPassword']);
 
 
-
+//Hello its me 
 if ($password != $ComfirmPassword ) {
     
     $message = "Your confirm password doesn't match.";
