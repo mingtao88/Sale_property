@@ -3,7 +3,6 @@ session_start();
 include("dbFunctions.php");
 $msg = "";
 
-
 if (isset($_POST['username'])) {
     //retrieve form data
     $username = $_POST['username'];
@@ -20,10 +19,15 @@ if (isset($_POST['username'])) {
         $_SESSION['agent_id'] = $row['agent_id'];
         $_SESSION['username'] = $row['username'];
         $_SESSION['name'] = $row['name'];
+        $_SESSION['role'] = $row['role'];
+        $_SESSION['mobile'] = $row['mobile'];
+        $_SESSION['company_id'] = $row['company_id'];
         header("location:index.php");
-    } else {
-        $msg = "<p>Sorry, you must enter a valid username 
-                and password to log in. <a href='login.php'>Back to Login Page</a></p>";
+        }
+        
+    else {
+        $message = "<h3>Sorry, you must enter a valid username and password to log in!<br/></h3><br> "
+                . "<a href='login.php'>Back to Login Page</a>";
     }
 }
 ?>
@@ -47,18 +51,12 @@ if (isset($_POST['username'])) {
         <?php
         include("navbar.php");
         ?>
-<div class="container">
-            <h3>Login page<br/><br>
-            </h3>
-           
-            
+        
+        <div class="container">
         <?php
-
-        echo $msg;
+        echo $message;
         ?>
-            
-            
-            
         </div>
+
     </body>
 </html>

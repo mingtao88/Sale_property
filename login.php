@@ -17,18 +17,15 @@
         <?php
         include("navbar.php");
         ?>
-<div class="container">
-            <h3>Login page<br/><br>
-            </h3>
+        
+        <div class="container">
+            <h3>Login Page<br/><br></h3>
             <form id="defaultForm" class="form-horizontal" role="form" action="doLogin.php" method="post" data-toggle="validator">
-                
                 
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="username">Username:</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-6">
                         <input type="text" class="form-control" id="username" name="username" 
-                        required data-minlength="6"
-                        data-minlength-error="Your name at least must have 6 letters"
                         required data-error="Username is required"/>
                         <div class="help-block with-errors"></div>
                     </div>
@@ -36,36 +33,26 @@
                 
                 <br>
                 
-                
                 <div class="form-group">
                     
                     <div class="ui-widget">
                     <label class="control-label col-sm-2" for="password">Password:</label>
-                    <div class="col-sm-10"> 
-                        <input type="password" class="form-control" id="password" name="password"  requried required data-error="Password is required"/> 
+                    <div class="col-sm-6"> 
+                        <input type="password" class="form-control" id="password" name="password"  
+                               requried data-error="Password is required"/> 
                         <div class="help-block with-errors"></div>
-                </div>
-                </div>
+                    </div>
+                    </div>
                 </div>
                 
                 <br>
                 
-
-                
-                
                 <div class="form-group"> 
-                    <div class="col-sm-offset-2 col-sm-10">
+                    <div class="col-sm-offset-2 col-sm-6">
                         <button type="submit" class="btn btn-primary">Sign In</button>
                     </div>
                 </div>
-                
-                
-            </form>
-            
-            
-            
-            
-            
+            </form> 
         </div>
     </body>
 </html>

@@ -4,41 +4,48 @@ $name = $_POST['name'];
 $mobile = $_POST['mobile'];
 $company = $_POST['company'];
 $username = $_POST['username'];
+$role = $_POST['role'];
 $password = SHA1($_POST['password']);
 $ComfirmPassword = SHA1($_POST['ComfirmPassword']);
 
+if ($password != $ComfirmPassword ) 
+    {
+    $message = "<h3>Your confirm new password doesn't match with your new password.<br/><h3><br> "
+            . "Please <a href='register.php'>register</a> again!";
+    } 
 
-//Hello its me 
-if ($password != $ComfirmPassword ) {
-    
-    $message = "Your confirm password doesn't match.";
-    $message .= "<br/> Please try to <a href='register.php'>register</a> again";
-} else {
-    $queryCheck = "SELECT * FROM agent  
-                    WHERE username='$username'";
+else 
+    { 
+    $queryCheck = "SELECT * FROM agent WHERE username='$username'"; 
     $resultCheck = mysqli_query($link, $queryCheck) or die(mysqli_error($link));
 
-    if (mysqli_num_rows($resultCheck) == 1) {
-        $message = "Username already exists";
-        $message .= "<br/> Please try to <a href='register.php'>register</a> again";
-    } else {
+    if (mysqli_num_rows($resultCheck) == 1) 
+        { 
+        $message = "<h3>Username already exists.<br/><h3><br> "
+                . "Please <a href='register.php'>register</a> again!";
+        } 
+    
+    else 
+        {
         $queryInsert = "INSERT INTO agent 
-                        (username, password, company_id, mobile,name)
+                        (username, password, company_id, mobile, name, role)
                         VALUES ('$username','$password','$company','$mobile',
-                        '$name')";
+                        '$name', '$role')";
+        
         $resultInsert = mysqli_query($link, $queryInsert) or die;
         $message = "Hi " . strtolower($name)  . 
                     " , you has been registered as an agent";
         $message .= "<br/> You can now <a href='login.php'>login</a>";
+        }   
     }
-}
 mysqli_close($link);
 ?>
 
 <?php 
 session_start();
+?>
 
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <title>Sale Property</title>
@@ -58,19 +65,12 @@ session_start();
         <?php
         include("navbar.php");
         ?>
+        
         <div class="container">
-            <h3>Registration Done<br/><br>
-            </h3>
-
-                    <?php
-
+        <?php
         echo $message;
         ?>
-            
-            
-            
-            
         </div>
+        
     </body>
 </html>
-

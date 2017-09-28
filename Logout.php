@@ -1,13 +1,12 @@
 <?php
 session_start();
 if (isset($_SESSION['username'])) {
-    $message = "<p>Bye Bye " . $_SESSION['username'] . ". You have logged out.<br /><a href='index.php'>Back</a></p>";
+    $message = "<h3>You have just logged out, " . $_SESSION['name'] ."!<br/></h3><br> Go back to <a href='login.php'>Login</a>";
     $_SESSION = array();
-    session_destroy();
-    
+    session_destroy(); 
 }
-//Testing
 ?>
+
 <html>
     <head>
         <title>Sale Property</title>
@@ -24,21 +23,15 @@ if (isset($_SESSION['username'])) {
     </head>
     
     <body>
-        <?php
+         <?php
         include("navbar.php");
         ?>
-<div class="container">
-            <h3>Logout<br/><br>
-            </h3>
-           
-            
+        
+        <div class="container">
         <?php
-
         echo $message;
         ?>
-            
-            
-            
         </div>
+        
     </body>
 </html>
